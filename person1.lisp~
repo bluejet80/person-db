@@ -1,0 +1,4 @@
+;; Define the inital variables
+
+(defvar *people* nil)
+(defvar *temp-list* nil)
