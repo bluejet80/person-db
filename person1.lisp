@@ -1,7 +1,8 @@
 ;; Define the inital variables
 
 (defvar *people-db* nil)
-(defvar *temp-list* nil)    
+(defvar *temp-list* nil)
+(defparameter *file-path* "~/lisp_prog/Person_DB/people.db")
 
 ;; Function to setup the prompt
 
@@ -57,15 +58,15 @@
       (if (equal resp "y")
 	  (add-person))))
 
-(defun save-db (filename)
-  (with-open-file (out filename
+(defun save-db ()
+  (with-open-file (out *file-path*
 		       :direction :output
 		       :if-exists :supersede)
     (with-standard-io-syntax
       (print *people-db* out))))
 
-(defun load-db (filename)
-  (with-open-file (in filename)
+(defun load-db ()
+  (with-open-file (in *file-path*)
     (with-standard-io-syntax
       (setf *people-db* (read in)))))
 
